@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage ("Test") {
+            steps {
+            echo "cronjob testing"
+            }
+        }
+        stage ("Github") {
+            steps {
+                sh "sudo useradd githubtest"
+            }
+        }
+
+    }
+    post {
+        success {
+            echo "success"
+        }
+        failure{
+            echo "failure"
+        }
+    }
+}
