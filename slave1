@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage ("Test") {
+            steps {
+            echo "cronjob testing"
+            }
+        }
+        stage ("SlaveTest1") {
+            steps {
+            echo "Testing master-slave configuration"
+            }
+        }
+    }
+    post {
+        success {
+            echo "success"
+        }
+        failure{
+            echo "failure"
+        }
+    }
+}
