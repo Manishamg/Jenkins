@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent Node1-jenkinslave
     stages {
         stage ("Test") {
             steps {
