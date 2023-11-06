@@ -1,5 +1,5 @@
 pipeline{
-    agent 
+    agent {label "node2"}
     stages {
         stage ("Testing Deployment") {
             steps {
