@@ -15,7 +15,7 @@ pipeline{
         }
       stage ("Cache clearing") {
         steps {
-          sh "aws cloudfront create-invalidation --distribution-id E2TS6H4W1LU7ID --paths '/*' "
+          sh "aws cloudfront create-invalidation --distribution-id E15VN56XCEXPX4 --paths '/*' "
             echo "cache clearing stage completed"
         }}
     }
