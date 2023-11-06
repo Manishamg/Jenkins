@@ -1,0 +1,27 @@
+pipeline{
+    agent{label "node2"}
+    stages {
+        stage ("clone"){
+            steps{
+                checkout scm
+            }
+        }
+        stage ("deploy"){
+            steps {
+                sh "aws s3 cp /var/lib/jenkins/workspace/apache/index1.html s3://buc-for-jenkins-deploy/"
+            }
+        }
+      stage ("Cache clearing") {
+        steps {
+          sh "aws cloudfront create-invalidation --distribution-id E2TS6H4W1LU7ID --paths '/*' "
+        }}
+    }
+    post{
+        success {
+            echo "success"
+        }
+        failure {
+            echo "failure"
+        }
+    }
+}
