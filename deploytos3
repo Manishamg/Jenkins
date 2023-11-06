@@ -8,7 +8,7 @@ pipeline{
         }
         stage ("deploy"){
             steps {
-                sh "aws s3 cp /var/lib/jenkins/workspace/s3/index.html s3://buc-for-jenkins-deploy/"
+                sh " aws s3 cp /var/lib/jenkins/workspace/apache/index.html s3://buc-for-jenkins-deploy/ "
                 //sh "aws s3 cp \${WORKSPACE}/apache/index.html s3://buc-for-jenkins-deploy/"
             }
         }
