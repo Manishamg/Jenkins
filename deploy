@@ -1,0 +1,17 @@
+pipeline{
+    agent 
+    stages {
+        stage ("Testing Deployment") {
+            steps {
+            echo "test file to test deployment"}
+        }
+    }
+    post {
+        success {
+            echo "the build is success"
+        }
+        failure {
+            echo "the build is failure"
+        }
+    }
+}
