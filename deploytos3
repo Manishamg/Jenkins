@@ -1,4 +1,4 @@
-pipeline{
+/*pipeline{
     agent{label "node2"}
     stages {
         stage ("clone"){
@@ -26,4 +26,46 @@ pipeline{
             echo "failure"
         }
     }
+}*/
+
+pipeline {
+    agent any
+
+    environment {
+        SONAR_URL = 'http://34.238.165.72:9000'
+        SONAR_LOGIN = '1c8ae349b96c5bd64fa896ab56b8f5c6fcfbc4c2'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from Git
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "this is just a sample build code"
+            }
+        }
+
+        stage('SonarQube Scan') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarqube-scanner'
+                    withSonarQubeEnv('SonarQube Server') {
+                        sh "/opt/bin/sonar-scanner -Dsonar.host.url=http://34.238.165.72:9000 -Dsonar.login=1c8ae349b96c5bd64fa896ab56b8f5c6fcfbc4c2"
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo " this is post step"
+        }
+    }
 }
+
