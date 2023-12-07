@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "NodeSlave1"}
+    agent any
     stages{
         stage ("AutoTest"){
             steps {
